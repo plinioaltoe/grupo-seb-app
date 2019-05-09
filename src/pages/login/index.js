@@ -34,7 +34,7 @@ class Login extends Component {
     return false
   }
 
-  handleSignIn = async e => {
+  handleLogin = async e => {
     e.preventDefault()
     if (!this.isEmpty()) {
       const { authRequest } = this.props
@@ -54,15 +54,15 @@ class Login extends Component {
     return (
       <Fragment>
         <Container>
-          <Form onSubmit={this.handleSignIn}>
-            {/* <Img src={logo} alt="logo" /> */}
+          <Form onSubmit={this.handleLogin}>
             {error && <p>{error}</p>}
             {errorLocalMessage && <p>{errorLocalMessage}</p>}
-            {/* <UserInputs display="signin" user={user} handleChange={this.handleChange} /> */}
+            <input type="checkbox" name="isDoctor" />
             <input
               type="text"
-              placeholder="Digite seu nome"
-              // onChange={e => handleChange(e, 'username')}
+              placeholder="Logue com seu usuário do github"
+              name="username"
+              onChange={e => handleChange(e, 'username')}
               value={user.username}
             />
             <Button type="submit">{loading ? <i className="fa fa-spinner fa-pulse" /> : 'Entrar'}</Button>

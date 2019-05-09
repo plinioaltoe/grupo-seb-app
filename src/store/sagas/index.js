@@ -1,7 +1,7 @@
 import { all, takeLatest } from 'redux-saga/effects'
-import { Types as RepositoryTypes } from '../ducks/repository'
-import { addRepository } from './repository'
+import { Types as AppointmentsTypes } from '../ducks/appointments'
+import { addAppointments } from './appointments'
 
 export default function* rootSaga() {
-  yield all([takeLatest(RepositoryTypes.ADD_REQUEST, addRepository)])
+  yield all([takeLatest(AppointmentsTypes.ADD_REQUEST, addAppointments)])
 }

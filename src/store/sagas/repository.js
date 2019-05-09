@@ -1,16 +1,16 @@
 import { call, put } from 'redux-saga/effects'
 import api from '../../services/api'
-import { Creators as RepositoryActions } from '../ducks/repository'
+import { Creators as AppointmentsActions } from '../ducks/appointments'
 
 // import { toast } from 'react-toastify'
 
-export function* addRepository(action) {
+export function* addAppointments(action) {
   try {
     const { payload } = action
-    const { repository, latitude, longitude } = payload
-    const { data } = yield call(api.get, `/users/${repository}`)
+    const { appointments, latitude, longitude } = payload
+    const { data } = yield call(api.get, `/users/${appointments}`)
 
-    const repositoryData = {
+    const appointmentsData = {
       id: data.id,
       name: data.name,
       login: data.login,
@@ -20,11 +20,11 @@ export function* addRepository(action) {
       longitude,
     }
 
-    yield put(RepositoryActions.addRepositorySuccess(repositoryData))
+    yield put(AppointmentsActions.addAppointmentsSuccess(appointmentsData))
     // toast('Repositório adicionado com sucesso!')
   } catch (error) {
     const erroMsg = 'Erro ao adicionar repositório'
     // toast(erroMsg)
-    yield put(RepositoryActions.addRepositoryFailure(erroMsg))
+    yield put(AppointmentsActions.addAppointmentsFailure(erroMsg))
   }
 }

@@ -13,7 +13,7 @@ describe('Header', () => {
       </MockRouter>,
     )
     const wrapperInside = wrapper.dive()
-    expect(wrapperInside.find('#link-logout').length).toBe(1)
+    expect(wrapperInside.find('#logout').length).toBe(1)
     expect(wrapperInside.find('#counter').length).toBe(1)
   })
 })

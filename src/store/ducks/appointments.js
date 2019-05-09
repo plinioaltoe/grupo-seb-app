@@ -3,10 +3,10 @@
  */
 
 export const Types = {
-  ADD_REQUEST: 'repository/ADD_REQUEST',
-  ADD_SUCESS: 'repository/ADD_SUCESS',
-  ADD_FAILURE: 'repository/ADD_FAILURE',
-  RM_SUCESS: 'repository/RM_SUCESS',
+  ADD_REQUEST: 'appointments/ADD_REQUEST',
+  ADD_SUCESS: 'appointments/ADD_SUCESS',
+  ADD_FAILURE: 'appointments/ADD_FAILURE',
+  RM_SUCESS: 'appointments/RM_SUCESS',
 }
 
 /**
@@ -18,7 +18,7 @@ const INITIAL_STATE = {
   error: null,
 }
 
-export default function repository(state = INITIAL_STATE, action) {
+export default function appointments(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.ADD_REQUEST:
       return { ...state, loading: true }
@@ -31,7 +31,7 @@ export default function repository(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: null,
-        data: state.data.filter(repository => repository.id !== action.payload.id),
+        data: state.data.filter(appointments => appointments.id !== action.payload.id),
       }
     default:
       return state
@@ -42,22 +42,22 @@ export default function repository(state = INITIAL_STATE, action) {
  * Actions
  */
 export const Creators = {
-  rmRepositoryRequest: id => ({
+  rmAppointmentsRequest: id => ({
     type: Types.RM_SUCESS,
     payload: { id },
   }),
 
-  addRepositoryRequest: ({ repository, latitude, longitude }) => ({
+  addAppointmentsRequest: ({ appointmentDateTime }) => ({
     type: Types.ADD_REQUEST,
-    payload: { repository, latitude, longitude },
+    payload: { appointmentDateTime },
   }),
 
-  addRepositorySuccess: data => ({
+  addAppointmentsSuccess: data => ({
     type: Types.ADD_SUCESS,
     payload: { data },
   }),
 
-  addRepositoryFailure: error => ({
+  addAppointmentsFailure: error => ({
     type: Types.ADD_FAILURE,
     payload: { error },
   }),
