@@ -10,7 +10,7 @@ export default {
   primary: '#f1f1f1',
   secondary: '#E6E6FA',
 
-  success: '#9dca83',
+  success: '#1db854',
   danger: '#e37a7a',
 
   transparent: 'transparent',

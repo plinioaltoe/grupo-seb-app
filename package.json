@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "connected-react-router": "^6.4.0",
+    "glamor": "^2.20.40",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -13,6 +14,7 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.0.0",
     "react-scripts": "3.0.1",
+    "react-toastify": "^5.1.0",
     "reactotron-react-js": "^3.0.1",
     "reactotron-redux": "^3.1.0",
     "reactotron-redux-saga": "^4.2.1",

@@ -1,23 +1,23 @@
 import './config/reactotron'
+import 'react-toastify/dist/ReactToastify.css'
 
 import React from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { ToastContainer } from 'react-toastify'
 
-// import 'react-toastify/dist/ReactToastify.css'
-
-import { store, persistor } from './store'
 import Routes from './routes'
-// import toastStyles from './styles/toast'
-import GlobalStyle from './styles/global'
+import { store, persistor } from './store'
+import { GlobalStyle, toastStyles, Wrapper } from './styles'
 
 const App = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <GlobalStyle />
-      <Routes />
-      {/* <ToastContainer {...toastStyles} /> */}
+      <Wrapper>
+        <Routes />
+      </Wrapper>
+      <ToastContainer {...toastStyles} />
     </PersistGate>
   </Provider>
 )

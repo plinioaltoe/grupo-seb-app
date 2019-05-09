@@ -14,7 +14,7 @@ export const Types = {
 const INITIAL_STATE = {
   loading: false,
   data: {},
-  error: null,
+  error: '',
 }
 
 export default function auth(state = INITIAL_STATE, action) {
@@ -22,7 +22,7 @@ export default function auth(state = INITIAL_STATE, action) {
     case Types.REQUEST:
       return { ...state, loading: true }
     case Types.SUCESS:
-      return { ...state, loading: false, error: null, data: action.payload.data }
+      return { ...state, loading: false, error: '', data: action.payload.data }
     case Types.FAILURE:
       return { ...state, loading: false, error: action.payload.error }
     default:

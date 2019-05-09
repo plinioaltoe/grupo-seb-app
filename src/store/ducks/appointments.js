@@ -15,7 +15,7 @@ export const Types = {
 const INITIAL_STATE = {
   loading: false,
   data: [],
-  error: null,
+  error: '',
 }
 
 export default function appointments(state = INITIAL_STATE, action) {
@@ -23,14 +23,14 @@ export default function appointments(state = INITIAL_STATE, action) {
     case Types.ADD_REQUEST:
       return { ...state, loading: true }
     case Types.ADD_SUCESS:
-      return { ...state, loading: false, error: null, data: [...state.data, action.payload.data] }
+      return { ...state, loading: false, error: '', data: [...state.data, action.payload.data] }
     case Types.ADD_FAILURE:
       return { ...state, loading: false, error: action.payload.error }
     case Types.RM_SUCESS:
       return {
         ...state,
         loading: false,
-        error: null,
+        error: '',
         data: state.data.filter(appointments => appointments.id !== action.payload.id),
       }
     default:

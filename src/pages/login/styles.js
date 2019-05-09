@@ -3,52 +3,62 @@ import styled from 'styled-components'
 import { colors, metrics } from '../../styles'
 
 export const Container = styled.div`
-  /* width: 100%; */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: ${colors.secondary};
-  padding: 0 0 ${metrics.basePadding * 2}px 0;
-  padding: ${metrics.baseDefault * 2.6}px 0 ${metrics.baseDefault * 3}px 0;
+  width: 270px;
+  height: 200px;
+  background: ${colors.white};
+  margin-top: ${metrics.baseMargin * 15}px;
+  border-radius: ${metrics.baseRadius}px;
 `
 
 export const Form = styled.form`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  width: min-content;
+  justify-content: center;
+  flex-direction: column;
+
   p {
-    max-width: ${metrics.baseMargin * 15}px;
     color: ${colors.danger};
     margin-bottom: ${metrics.baseMargin}px;
-    border: 1px solid ${colors.danger};
-    padding: ${metrics.basePadding}px;
-    width: 100%;
+
     text-align: center;
   }
-`
 
-export const Img = styled.img`
-  padding: 0px 0px ${metrics.basePadding * 4}px 0;
-`
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: ${metrics.baseMargin}px;
+  }
 
-export const Text = styled.div`
-  padding: ${metrics.basePadding * 2}px 0 0 0;
-  font-size: ${metrics.font.small}px;
-  color: ${colors.white};
-  opacity: 0.6;
-  cursor: pointer;
-`
+  input[type='checkbox'] {
+    height: 20px;
+    width: 20px;
+    background-color: ${colors.lighter};
+    margin-right: ${metrics.baseMargin / 2}px;
+  }
 
-export const Button = styled.button`
-  border-radius: ${metrics.baseRadius * 5}px;
-  height: ${metrics.baseMargin * 2.5}px;
-  width: ${metrics.baseMargin * 15}px;
-  background: ${colors.primary};
-  border: 0;
-  color: ${colors.white};
-  font-size: ${metrics.font.small}px;
-  font-weight: bold;
-  cursor: pointer;
+  input[type='text'] {
+    padding: ${metrics.basePadding / 2}px 0 ${metrics.basePadding / 2}px 0;
+    width: 200px;
+    opacity: 0.6;
+    font-size: 16px;
+  }
+
+  button {
+    background: ${colors.success};
+    height: 32px;
+    border-radius: ${metrics.baseRadius * 3}px;
+    color: ${colors.white};
+    line-height: 32px;
+    padding: 0 35px;
+    border: 0;
+    margin-top: ${metrics.baseMargin}px;
+    font-size: 12px;
+    width: 200px;
+    cursor: pointer;
+  }
 `

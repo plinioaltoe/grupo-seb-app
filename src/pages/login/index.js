@@ -1,12 +1,11 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-//import { Creators as AuthActions } from '../../store/ducks/auth'
+import { Creators as AuthActions } from '../../store/ducks/auth'
 
-import { Container, Button, Text, Img, Form } from './styles'
+import { Container, Form } from './styles'
 
 class Login extends Component {
   static propTypes = {
@@ -17,20 +16,17 @@ class Login extends Component {
 
   state = {
     errorLocalMessage: '',
-    email: '',
-    password: '',
+    username: '',
+    isDoctor: false,
   }
 
   isEmpty = () => {
-    const { email, password } = this.state
-    if (!email) {
-      this.setState({ errorLocalMessage: 'E-mail obrigatório.' })
+    const { username } = this.state
+    if (!username) {
+      this.setState({ errorLocalMessage: 'Nome do repositório obrigatório.' })
       return true
     }
-    if (!password) {
-      this.setState({ errorLocalMessage: 'Password obrigatório.' })
-      return true
-    }
+
     return false
   }
 
@@ -38,54 +34,49 @@ class Login extends Component {
     e.preventDefault()
     if (!this.isEmpty()) {
       const { authRequest } = this.props
-      const { email, password } = this.state
-      await authRequest({ email, password })
+      const { username } = this.state
+      await authRequest({ username })
     }
   }
 
-  handleChange = (e, campo) => {
-    this.setState({ [campo]: e.target.value })
-  }
-
   render() {
-    const { email, password, errorLocalMessage } = this.state
-    const user = { email, password }
+    const { username, isDoctor, errorLocalMessage } = this.state
     const { error, loading } = this.props
+
     return (
-      <Fragment>
-        <Container>
-          <Form onSubmit={this.handleLogin}>
-            {error && <p>{error}</p>}
-            {errorLocalMessage && <p>{errorLocalMessage}</p>}
-            <input type="checkbox" name="isDoctor" />
-            <input
-              type="text"
-              placeholder="Logue com seu usuário do github"
-              name="username"
-              onChange={e => handleChange(e, 'username')}
-              value={user.username}
-            />
-            <Button type="submit">{loading ? <i className="fa fa-spinner fa-pulse" /> : 'Entrar'}</Button>
-            <Link to="/signup">
-              <Text>Criar conta grátis</Text>
-            </Link>
-          </Form>
-        </Container>
-      </Fragment>
+      <Container>
+        <Form onSubmit={this.handleLogin}>
+          {error && <p>{error}</p>}
+          {errorLocalMessage && <p>{errorLocalMessage}</p>}
+          <label>
+            <input type="checkbox" name="isDoctor" onChange={e => this.setState({ isDoctor: e.target.checked })} />
+            Autenticar como médico
+          </label>
+
+          <input
+            type="text"
+            placeholder="Usuário do github"
+            name="username"
+            onChange={e => this.setState({ username: e.target.value })}
+            value={username}
+            disabled={isDoctor}
+          />
+
+          <button type="submit">{loading ? <i className="fa fa-spinner fa-pulse" /> : 'Entrar'}</button>
+        </Form>
+      </Container>
     )
   }
 }
 
-// const mapStateToProps = state => ({
-//   error: state.auth.error,
-//   loading: state.auth.loading,
-// })
+const mapStateToProps = state => {
+  console.log(state)
+  return { error: state.auth.error, loading: state.auth.loading }
+}
 
-// const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch)
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(Login)
-
-export default Login
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login)
