@@ -69,10 +69,10 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state)
-  return { error: state.auth.error, loading: state.auth.loading }
-}
+const mapStateToProps = state => ({
+  error: state.auth.error,
+  loading: state.auth.loading,
+})
 
 const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch)
 
