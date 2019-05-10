@@ -34,7 +34,7 @@ export const Content = styled.div`
   i[qtd]:after {
     content: attr(qtd);
     position: absolute;
-    background: rgba(0, 0, 255, 0.85);
+    background: ${colors.badge};
     height: 1.5rem;
     bottom: 0.6rem;
     right: 1.2rem;

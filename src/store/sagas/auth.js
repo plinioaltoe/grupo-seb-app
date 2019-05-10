@@ -8,7 +8,6 @@ export function* signin({ payload }) {
   try {
     const { username } = payload
     const { data } = yield call(api.get, `/users/${username}`)
-    console.log(data)
     yield put(AuthActions.authSuccess(data))
     login()
     yield put(push('/appointments'))

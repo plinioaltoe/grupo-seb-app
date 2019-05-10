@@ -12,6 +12,7 @@ export default {
 
   success: '#1db854',
   danger: '#e37a7a',
+  badge: 'rgba(0, 0, 255, 0.85)',
 
   transparent: 'transparent',
   darkTransparent: 'rgba(0,0,0,0.6)',

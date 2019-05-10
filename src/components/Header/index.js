@@ -10,14 +10,19 @@ import { logout } from '../../services/auth'
 import { Container, Menu, Content } from './styles'
 
 class Header extends Component {
+  static propTypes = {
+    appointmentsCount: PropTypes.number.isRequired,
+    loading: PropTypes.bool.isRequired,
+  }
+
   render() {
     const title = 'Central de Marcação e Acompanhamento de Consultas.'
-    const qtd = 10
+    const { appointmentsCount } = this.props
     return (
       <Container>
-        <Content qtd={qtd}>
+        <Content>
           <h1>{title} </h1>
-          <i qtd={qtd} class="fa fa-calendar" aria-hidden="true" icon-white badge />
+          <i qtd={appointmentsCount} className="fa fa-calendar" aria-hidden="true" />
         </Content>
         <Menu>
           <Link onClick={() => logout()} to="/" id="logout">
@@ -33,7 +38,7 @@ const mapStateToProps = state => {
   console.log(state)
   return {
     loading: state.appointments.loading,
-    appointments: state.appointments.data,
+    appointmentsCount: state.appointments.data.length,
   }
 }
 
