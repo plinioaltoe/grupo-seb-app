@@ -16,7 +16,7 @@ const Header = ({}) => (
       <img src={personIcon} alt="profile" />
       <ul>
         <li>
-          <Link onClick={() => logout()} to="/" id="logout">
+          <Link onClick={() => {}} to="/" id="logout">
             Logout
           </Link>
         </li>

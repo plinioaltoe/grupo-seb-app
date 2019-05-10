@@ -23,28 +23,28 @@ export const Form = styled.form`
   p {
     color: ${colors.danger};
     margin-bottom: ${metrics.baseMargin}px;
-
     text-align: center;
   }
 
   label {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: ${metrics.baseMargin}px;
+    justify-content: flex-start;
+    width: 200px;
+    font-size: 10px;
+    opacity: 0.5;
   }
 
   input[type='checkbox'] {
     height: 20px;
-    width: 20px;
+    margin-right: ${metrics.baseMargin / 3}px;
     background-color: ${colors.lighter};
-    margin-right: ${metrics.baseMargin / 2}px;
   }
 
   input[type='text'] {
     padding: ${metrics.basePadding / 2}px 0 ${metrics.basePadding / 2}px 0;
     width: 200px;
-    opacity: 0.6;
+    opacity: 0.8;
     font-size: 16px;
   }
 

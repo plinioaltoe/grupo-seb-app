@@ -9,15 +9,15 @@ export const Container = styled.div`
   padding: ${metrics.basePadding * 2}px ${metrics.basePadding * 3}px ${metrics.basePadding * 2}px
     ${metrics.basePadding * 3}px;
   margin-bottom: ${metrics.baseMargin * 2}px;
-  background: ${colors.primary};
+  background: ${colors.success};
 
   div#img {
-    width: ${metrics.font.big}px;
+    width: 16px;
   }
   a {
-    height: ${metrics.font.big}px;
+    height: 16px;
     img {
-      font-size: ${metrics.font.big}px;
+      font-size: 16px;
     }
   }
 `
@@ -31,7 +31,7 @@ export const Menu = styled.div`
 
   a {
     font-weight: bold;
-    font-size: ${metrics.font.small}px;
+    font-size: 12px;
     color: ${colors.white};
     padding-left: ${metrics.basePadding * 3}px;
     text-decoration: none;

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-// import 'font-awesome/css/font-awesome.css'
+import 'font-awesome/css/font-awesome.css'
 import { colors } from './index'
 
 const GlobalStyle = createGlobalStyle`

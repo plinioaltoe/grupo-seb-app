@@ -6,8 +6,9 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { ToastContainer } from 'react-toastify'
 
-import Routes from './routes'
 import { store, persistor } from './store'
+import Routes from './routes'
+
 import { GlobalStyle, toastStyles, Wrapper } from './styles'
 
 const App = () => (
