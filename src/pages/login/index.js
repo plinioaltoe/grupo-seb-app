@@ -30,7 +30,7 @@ class Login extends Component {
     return false
   }
 
-  handleLogin = async e => {
+  handleLogin = async (e) => {
     e.preventDefault()
     const { username, isDoctor } = this.state
     if (!this.isEmpty() || isDoctor) {
@@ -58,10 +58,10 @@ class Login extends Component {
             value={username}
             disabled={isDoctor}
           />
-          <label>
+          <span>
             <input type="checkbox" name="isDoctor" onChange={e => this.setState({ isDoctor: e.target.checked })} />
             Autenticar como médico
-          </label>
+          </span>
           <button type="submit">{loading ? <i className="fa fa-spinner fa-pulse" /> : 'Entrar'}</button>
         </Form>
       </Container>

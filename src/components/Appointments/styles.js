@@ -77,16 +77,32 @@ export const Appointment = styled.div`
     margin-bottom: 0px;
   }
 
-  label {
+  span {
     color: ${colors.regular};
     font-size: 12px;
   }
+`
+
+export const Erro = styled.span`
+  color: ${colors.danger};
+  margin-bottom: ${metrics.baseMargin}px;
+  border: 1px solid ${colors.danger};
+  border-radius: ${metrics.baseRadius}px;
+  padding: ${metrics.basePadding / 2}px;
+  width: 70%;
+  text-align: center;
 `
 
 export const Form = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
   input {
     background-color: ${colors.white};
     border-radius: ${metrics.baseRadius}px;
@@ -97,7 +113,7 @@ export const Form = styled.form`
     padding-left: ${metrics.basePadding}px;
     font-size: 12px;
     text-align: left;
-
+    margin-left: ${metrics.baseMargin}px;
     ::placeholder {
       padding-left: ${metrics.basePadding}px;
       opacity: 0.5;
@@ -119,7 +135,3 @@ export const Form = styled.form`
     }
   }
 `
-
-export const Flat = styled.div``
-
-export const Button = styled.button``

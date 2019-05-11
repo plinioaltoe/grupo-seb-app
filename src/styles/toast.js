@@ -10,7 +10,7 @@ const toastStyles = {
     background: colors.lighter,
   }),
   progressClassName: css({
-    background: colors.primary,
+    background: colors.success,
   }),
 }
 export default toastStyles

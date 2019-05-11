@@ -30,7 +30,7 @@ export const Form = styled.form`
     text-align: center;
   }
 
-  label {
+  span {
     display: flex;
     align-items: center;
     justify-content: flex-start;
