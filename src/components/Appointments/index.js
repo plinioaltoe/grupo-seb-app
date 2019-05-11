@@ -54,11 +54,6 @@ class Appointments extends Component {
     errorLocalMessage: '',
   }
 
-  getFormatedDate = () => {
-    const { apDate } = this.state
-    return moment(apDate[0])
-  }
-
   isEmpty = () => {
     const { apDate } = this.state
     const { appointmentsDoctor } = this.props

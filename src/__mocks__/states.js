@@ -20,7 +20,7 @@ export const STATE_NO_DOCTOR = {
         avatar_url: 'https://avatars1.githubusercontent.com/u/36741085?v=4',
         login: 'plinioaltoe',
         isDoctor: false,
-        appointmentDate: ['2019-01-01 00:00'],
+        appointmentDate: ['2019-05-01T15:00:00.000Z'],
         user_id: 1,
       },
       {
@@ -29,7 +29,7 @@ export const STATE_NO_DOCTOR = {
         avatar_url: 'https://avatars1.githubusercontent.com/u/36741085?v=4',
         login: 'plinioaltoe',
         isDoctor: false,
-        appointmentDate: ['2019-02-01 00:00'],
+        appointmentDate: ['2019-06-01T15:00:00.000Z'],
         user_id: 1,
       },
       {
@@ -38,7 +38,7 @@ export const STATE_NO_DOCTOR = {
         avatar_url: 'https://avatars1.githubusercontent.com/u/36741085?v=4',
         login: 'ze',
         isDoctor: false,
-        appointmentDate: ['2019-03-01 00:00'],
+        appointmentDate: ['2019-07-01T15:00:00.000Z'],
         user_id: 2,
       },
     ],
@@ -65,7 +65,7 @@ export const STATE_DOCTOR = {
         avatar_url: 'https://avatars1.githubusercontent.com/u/36741085?v=4',
         login: 'plinioaltoe',
         isDoctor: false,
-        appointmentDate: ['2019-01-01 00:00'],
+        appointmentDate: ['2019-05-01T15:00:00.000Z'],
         user_id: 1,
       },
       {
@@ -74,7 +74,7 @@ export const STATE_DOCTOR = {
         avatar_url: 'https://avatars1.githubusercontent.com/u/36741085?v=4',
         login: 'plinioaltoe',
         isDoctor: false,
-        appointmentDate: ['2019-02-01 00:00'],
+        appointmentDate: ['2019-06-01T15:00:00.000Z'],
         user_id: 1,
       },
       {
@@ -83,7 +83,7 @@ export const STATE_DOCTOR = {
         avatar_url: 'https://avatars1.githubusercontent.com/u/36741085?v=4',
         login: 'ze',
         isDoctor: false,
-        appointmentDate: ['2019-03-01 00:00'],
+        appointmentDate: ['2019-07-01T15:00:00.000Z'],
         user_id: 2,
       },
     ],

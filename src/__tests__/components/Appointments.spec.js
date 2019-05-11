@@ -55,32 +55,86 @@ describe('Appointments no doctor view', () => {
     expect(storeNoDoctor.getActions()).toContainEqual(AppointmentsActions.rmAppointmentsRequest(1))
   })
 
-  // it('should be able to remove token from local storage', () => {
-  //   const spy = jest.spyOn(Storage.prototype, 'removeItem')
+  it('should be able to add appointments', () => {
+    const wrapper = mount(
+      <Provider store={storeNoDoctor}>
+        <MockRouter push={push}>
+          <Appointments />
+        </MockRouter>
+      </Provider>,
+    )
 
-  //   const wrapper = mount(
-  //     <Provider store={storeNoDoctor}>
-  //       <MockRouter push={push}>
-  //         <Appointments />
-  //       </MockRouter>
-  //     </Provider>,
-  //   )
-  //   const wrapperInside = wrapper.find('Appointments')
-  //   wrapperInside.find('a#logout').simulate('click')
-  //   expect(spy).toHaveBeenCalled()
-  // })
+    const wrapperInside = wrapper.find('Appointments')
+    const spy = jest.spyOn(wrapperInside.instance(), 'handleSubmit')
+    const apDate = ['2019-05-02T15:00:00.000Z']
+    wrapperInside.setState({ apDate })
+    wrapperInside.find('button#agendar').simulate('submit')
+    expect(spy).toHaveBeenCalled()
+    expect(storeNoDoctor.getActions()).toContainEqual(
+      AppointmentsActions.addAppointmentsRequest({
+        appointmentDate: apDate,
+        user: STATE_NO_DOCTOR.auth.data,
+      }),
+    )
+  })
 
-  // it('should count only yours appointments', () => {
-  //   const wrapper = mount(
-  //     <Provider store={storeNoDoctor}>
-  //       <MockRouter push={push}>
-  //         <Appointments />
-  //       </MockRouter>
-  //     </Provider>,
-  //   )
-  //   const wrapperInside = wrapper.find('Appointments')
-  //   expect(wrapperInside.props().appointmentsCount).toBe(2)
-  // })
+  it('should not be able to add appointments at the same time', () => {
+    const wrapper = mount(
+      <Provider store={storeNoDoctor}>
+        <MockRouter push={push}>
+          <Appointments />
+        </MockRouter>
+      </Provider>,
+    )
+
+    const wrapperInside = wrapper.find('Appointments')
+    const apDate = ['2019-05-01T15:00:00.000Z']
+    wrapperInside.setState({ apDate })
+    wrapperInside.find('button#agendar').simulate('submit')
+    expect(wrapperInside.instance().state.errorLocalMessage).toBe(
+      'Já existe uma consulta marcada nessa data.',
+    )
+    expect(storeNoDoctor.getActions()).not.toContainEqual(
+      AppointmentsActions.addAppointmentsRequest({
+        appointmentDate: apDate,
+        user: STATE_NO_DOCTOR.auth.data,
+      }),
+    )
+  })
+
+  it('should not be able to add appointments without date', () => {
+    const wrapper = mount(
+      <Provider store={storeNoDoctor}>
+        <MockRouter push={push}>
+          <Appointments />
+        </MockRouter>
+      </Provider>,
+    )
+
+    const wrapperInside = wrapper.find('Appointments')
+    const apDate = ''
+    wrapperInside.setState({ apDate })
+    wrapperInside.find('button#agendar').simulate('submit')
+    expect(wrapperInside.instance().state.errorLocalMessage).toBe('Insira uma data.')
+    expect(storeNoDoctor.getActions()).not.toContainEqual(
+      AppointmentsActions.addAppointmentsRequest({
+        appointmentDate: apDate,
+        user: STATE_NO_DOCTOR.auth.data,
+      }),
+    )
+  })
+
+  it('should count only yours appointments', () => {
+    const wrapper = mount(
+      <Provider store={storeNoDoctor}>
+        <MockRouter push={push}>
+          <Appointments />
+        </MockRouter>
+      </Provider>,
+    )
+    const wrapperInside = wrapper.find('Appointments')
+    expect(wrapperInside.props().appointments.length).toBe(2)
+  })
 })
 
 describe('Appointments doctor view', () => {
@@ -109,30 +163,16 @@ describe('Appointments doctor view', () => {
     expect(wrapperInside.props().appointments.length).toBe(3)
     expect(wrapperInside.find('li#listItem').length).toBe(3)
   })
-  // it('should be able to remove token from local storage', () => {
-  //   const spy = jest.spyOn(Storage.prototype, 'removeItem')
 
-  //   const wrapper = mount(
-  //     <Provider store={storeDoctor}>
-  //       <MockRouter push={push}>
-  //         <Appointments />
-  //       </MockRouter>
-  //     </Provider>,
-  //   )
-  //   const wrapperInside = wrapper.find('Appointments')
-  //   wrapperInside.find('a#logout').simulate('click')
-  //   expect(spy).toHaveBeenCalled()
-  // })
-
-  // it('should count only yours appointments', () => {
-  //   const wrapper = mount(
-  //     <Provider store={storeDoctor}>
-  //       <MockRouter push={push}>
-  //         <Appointments />
-  //       </MockRouter>
-  //     </Provider>,
-  //   )
-  //   const wrapperInside = wrapper.find('Appointments')
-  //   expect(wrapperInside.props().appointmentsCount).toBe(2)
-  // })
+  it('should count all appointments', () => {
+    const wrapper = mount(
+      <Provider store={storeDoctor}>
+        <MockRouter push={push}>
+          <Appointments />
+        </MockRouter>
+      </Provider>,
+    )
+    const wrapperInside = wrapper.find('Appointments')
+    expect(wrapperInside.props().appointments.length).toBe(3)
+  })
 })
