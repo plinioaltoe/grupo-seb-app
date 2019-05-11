@@ -1,4 +1,8 @@
-import appointmentsReducer, { Creators as AppointmentsActions } from '../../store/ducks/appointments'
+import appointmentsReducer, {
+  Creators as AppointmentsActions,
+} from '../../store/ducks/appointments'
+
+import { STATE_NO_DOCTOR } from '../../__mocks__/states'
 
 const INITIAL_STATE = {
   loading: false,
@@ -9,7 +13,10 @@ const INITIAL_STATE = {
 describe('Appointments Reducer', () => {
   test('should be able to call add request', () => {
     const appointmentDate = '01/01/2019'
-    const state = appointmentsReducer(INITIAL_STATE, AppointmentsActions.addAppointmentsRequest({ appointmentDate }))
+    const state = appointmentsReducer(
+      INITIAL_STATE,
+      AppointmentsActions.addAppointmentsRequest({ appointmentDate }),
+    )
     expect(state.data).toEqual([])
     expect(state.loading).toBeTruthy()
     expect(state.error).toBeNull()
@@ -17,7 +24,10 @@ describe('Appointments Reducer', () => {
 
   test('should be able to call add failure', () => {
     const error = 'deu erro'
-    const state = appointmentsReducer(INITIAL_STATE, AppointmentsActions.addAppointmentsFailure(error))
+    const state = appointmentsReducer(
+      INITIAL_STATE,
+      AppointmentsActions.addAppointmentsFailure(error),
+    )
     expect(state.data).toEqual([])
     expect(state.loading).toBeFalsy()
     expect(state.error).toBe(error)
@@ -25,34 +35,24 @@ describe('Appointments Reducer', () => {
 
   test('should be able to add appointments', () => {
     const appointmentDate = '01/01/2019'
-    const state = appointmentsReducer(INITIAL_STATE, AppointmentsActions.addAppointmentsSuccess({ appointmentDate }))
+    const state = appointmentsReducer(
+      INITIAL_STATE,
+      AppointmentsActions.addAppointmentsSuccess({ appointmentDate }),
+    )
 
     expect(state.data).toContainEqual({ appointmentDate })
     expect(state.loading).toBeFalsy()
-    expect(state.error).toBeNull()
+    expect(state.error).toBe('')
   })
 
   test('should be able to remove appointments', () => {
-    const data = [
-      {
-        id: 1,
-        appointmentDate: '01/01/2019',
-      },
-      {
-        id: 2,
-        appointmentDate: '01/01/2020',
-      },
-    ]
-    const INITIAL_STATE = {
-      loading: false,
-      data,
-      error: null,
-    }
+    const state = appointmentsReducer(
+      STATE_NO_DOCTOR.appointments,
+      AppointmentsActions.rmAppointmentsRequest(1),
+    )
 
-    const state = appointmentsReducer(INITIAL_STATE, AppointmentsActions.rmAppointmentsRequest(1))
-
-    expect(state.data).not.toContainEqual(data[0])
+    expect(state.data).not.toContainEqual(STATE_NO_DOCTOR.appointments[0])
     expect(state.loading).toBeFalsy()
-    expect(state.error).toBeNull()
+    expect(state.error).toBe('')
   })
 })

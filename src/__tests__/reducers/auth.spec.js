@@ -3,7 +3,7 @@ import authReducer, { Creators as AuthActions } from '../../store/ducks/auth'
 const INITIAL_STATE = {
   loading: false,
   data: {},
-  error: null,
+  error: '',
 }
 
 describe('Auth Reducer', () => {
@@ -14,7 +14,7 @@ describe('Auth Reducer', () => {
     const state = authReducer(INITIAL_STATE, AuthActions.authRequest(any))
     expect(state.data).toEqual({})
     expect(state.loading).toBeTruthy()
-    expect(state.error).toBeNull()
+    expect(state.error).toBe('')
   })
 
   test('should be able to get failure', () => {
@@ -32,6 +32,6 @@ describe('Auth Reducer', () => {
     const state = authReducer(INITIAL_STATE, AuthActions.authSuccess(login))
     expect(state.data).toEqual(login)
     expect(state.loading).toBeFalsy()
-    expect(state.error).toBeNull()
+    expect(state.error).toBe('')
   })
 })

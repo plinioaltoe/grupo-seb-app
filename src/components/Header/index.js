@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux'
 import { logout } from '../../services/auth'
 
 import { Container, Menu, Content } from './styles'
+import { filterAndOrderByDate } from '../utils'
 
 const Header = ({ appointmentsCount, loading }) => (
   <Container>
@@ -34,7 +35,7 @@ Header.propTypes = {
 
 const mapStateToProps = state => ({
   loading: state.appointments.loading,
-  appointmentsCount: state.appointments.data.length,
+  appointmentsCount: filterAndOrderByDate(state.appointments.data, state.auth.data).length,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch)

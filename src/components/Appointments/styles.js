@@ -40,7 +40,7 @@ export const List = styled.ul`
     margin-bottom: ${metrics.baseMargin}px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 
     button {
       border: 0;
@@ -56,6 +56,7 @@ export const User = styled.div`
    {
     display: flex;
     align-items: center;
+    width: 230px;
     img {
       width: 48px;
       height: 48px;

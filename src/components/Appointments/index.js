@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import Flatpickr from 'react-flatpickr'
 import { Portuguese } from 'flatpickr/dist/l10n/pt'
 import moment from 'moment'
-import { filterAndOrderByDate } from './filterAndOrderByDate'
+import { filterAndOrderByDate } from '../utils'
 
 import { Creators as AppointmentsActions } from '../../store/ducks/appointments'
 import {
@@ -20,6 +20,16 @@ moment.locale('pt-br')
 class Appointments extends Component {
   static propTypes = {
     appointments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        avatar_url: PropTypes.string,
+        appointmentDate: PropTypes.arrayOf(
+          PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+        ),
+      }),
+    ).isRequired,
+    appointmentsDoctor: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
         name: PropTypes.string,
@@ -46,19 +56,21 @@ class Appointments extends Component {
 
   getFormatedDate = () => {
     const { apDate } = this.state
-    return moment(apDate[0]).format('LLLL')
+    return moment(apDate[0])
   }
 
   isEmpty = () => {
     const { apDate } = this.state
-    const { appointments } = this.props
+    const { appointmentsDoctor } = this.props
 
     if (!apDate) {
       this.setState({ errorLocalMessage: 'Insira uma data.' })
       return true
     }
 
-    const hasAppointments = appointments.find(ap => ap.appointmentDate === apDate[0])
+    const hasAppointments = appointmentsDoctor.find(
+      ap => moment(ap.appointmentDate[0]).format() === moment(apDate[0]).format(),
+    )
 
     if (hasAppointments) {
       this.setState({ errorLocalMessage: 'Já existe uma consulta marcada nessa data.' })
@@ -107,7 +119,7 @@ class Appointments extends Component {
         {welcome}
         <List>
           {appointments.map(ap => (
-            <li key={ap.id}>
+            <li key={ap.id} id="listItem">
               <User>
                 <img src={ap.avatar_url} alt="Avatar" />
                 <strong>{ap.name}</strong>
@@ -116,7 +128,11 @@ class Appointments extends Component {
                 <strong>Data e hora da consulta: </strong>
                 <span>{moment(ap.appointmentDate[0]).format('LLLL')}</span>
               </Appointment>
-              <button onClick={() => rmAppointmentsRequest(ap.id)} type="button">
+              <button
+                onClick={() => rmAppointmentsRequest(ap.id)}
+                type="button"
+                id={`delete${ap.id}`}
+              >
                 <i className="fa fa-times-circle" />
               </button>
             </li>
@@ -141,7 +157,7 @@ class Appointments extends Component {
                   onChange={date => this.setState({ apDate: date })}
                 />
               </div>
-              <button type="submit">
+              <button type="submit" id="agendar">
                 {loading ? <i className="fa fa-spinner fa-pulse" /> : 'Agendar'}
               </button>
             </Form>
@@ -155,6 +171,7 @@ class Appointments extends Component {
 const mapStateToProps = state => ({
   loading: state.appointments.loading,
   appointments: filterAndOrderByDate(state.appointments.data, state.auth.data),
+  appointmentsDoctor: state.appointments.data,
   user: state.auth.data,
   error: state.appointments.error,
 })
