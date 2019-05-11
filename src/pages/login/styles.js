@@ -12,6 +12,10 @@ export const Container = styled.div`
   background: ${colors.white};
   margin-top: ${metrics.baseMargin * 15}px;
   border-radius: ${metrics.baseRadius}px;
+
+  p {
+    margin-bottom: ${metrics.baseMargin}px;
+  }
 `
 
 export const Form = styled.form`

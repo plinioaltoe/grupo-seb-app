@@ -32,10 +32,10 @@ class Login extends Component {
 
   handleLogin = async e => {
     e.preventDefault()
-    if (!this.isEmpty()) {
+    const { username, isDoctor } = this.state
+    if (!this.isEmpty() || isDoctor) {
       const { authRequest } = this.props
-      const { username } = this.state
-      await authRequest({ username })
+      await authRequest({ username, isDoctor })
     }
   }
 
@@ -45,13 +45,10 @@ class Login extends Component {
 
     return (
       <Container>
+        <p>Digite para acessar as consultas</p>
         <Form onSubmit={this.handleLogin}>
           {error && <p>{error}</p>}
           {errorLocalMessage && <p>{errorLocalMessage}</p>}
-          <label>
-            <input type="checkbox" name="isDoctor" onChange={e => this.setState({ isDoctor: e.target.checked })} />
-            Autenticar como médico
-          </label>
 
           <input
             type="text"
@@ -61,7 +58,10 @@ class Login extends Component {
             value={username}
             disabled={isDoctor}
           />
-
+          <label>
+            <input type="checkbox" name="isDoctor" onChange={e => this.setState({ isDoctor: e.target.checked })} />
+            Autenticar como médico
+          </label>
           <button type="submit">{loading ? <i className="fa fa-spinner fa-pulse" /> : 'Entrar'}</button>
         </Form>
       </Container>

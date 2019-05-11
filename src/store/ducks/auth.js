@@ -34,9 +34,9 @@ export default function auth(state = INITIAL_STATE, action) {
  * Actions
  */
 export const Creators = {
-  authRequest: ({ username }) => ({
+  authRequest: ({ username, isDoctor }) => ({
     type: Types.REQUEST,
-    payload: { username },
+    payload: { username, isDoctor },
   }),
 
   authSuccess: data => ({

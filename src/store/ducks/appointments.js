@@ -33,6 +33,7 @@ export default function appointments(state = INITIAL_STATE, action) {
         error: '',
         data: state.data.filter(appointments => appointments.id !== action.payload.id),
       }
+
     default:
       return state
   }
@@ -47,9 +48,9 @@ export const Creators = {
     payload: { id },
   }),
 
-  addAppointmentsRequest: ({ appointmentDateTime }) => ({
+  addAppointmentsRequest: ({ appointmentDate, user }) => ({
     type: Types.ADD_REQUEST,
-    payload: { appointmentDateTime },
+    payload: { appointmentDate, user },
   }),
 
   addAppointmentsSuccess: data => ({

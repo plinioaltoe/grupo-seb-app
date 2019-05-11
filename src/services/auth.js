@@ -1,9 +1,27 @@
-export const TOKEN_KEY = '@meetup-Token'
-export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null
-export const getToken = () => localStorage.getItem(TOKEN_KEY)
-export const login = (token) => {
-  localStorage.setItem(TOKEN_KEY, token)
+export const DOCTOR_KEY = '@isDoctor'
+export const APPOINTMENTS_KEY = '@appointments'
+export const isAuthenticated = () => localStorage.getItem(DOCTOR_KEY) !== null
+
+export const login = isDoctor => {
+  localStorage.setItem(DOCTOR_KEY, isDoctor)
 }
+
+export const save = appointments => {
+  localStorage.setItem(APPOINTMENTS_KEY, appointments)
+}
+
+export const getAppointments = id => {
+  // const appointments = localStorage.getItem(APPOINTMENTS_KEY)
+  // if (!appointments) return []
+  // if (!id) return appointments
+  // return appointments.find(ap => ap.id === id)
+}
+
+export const clear = () => {
+  localStorage.removeItem(APPOINTMENTS_KEY)
+}
+
 export const logout = () => {
-  localStorage.removeItem(TOKEN_KEY)
+  clear()
+  localStorage.removeItem(DOCTOR_KEY)
 }

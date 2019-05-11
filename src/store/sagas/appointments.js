@@ -4,26 +4,22 @@ import { Creators as AppointmentsActions } from '../ducks/appointments'
 
 // import { toast } from 'react-toastify'
 
-export function* addAppointments(action) {
+export function* addAppointments({ payload }) {
   try {
-    const { payload } = action
-    const { appointments, latitude, longitude } = payload
-    const { data } = yield call(api.get, `/users/${appointments}`)
+    const { appointmentDate, user } = payload
 
-    const appointmentsData = {
-      id: data.id,
-      name: data.name,
-      login: data.login,
-      avatar_url: data.avatar_url,
-      repos_url: data.repos_url,
-      latitude,
-      longitude,
+    const appointments = {
+      id: Math.random(),
+      name: user.name,
+      login: user.login,
+      avatar_url: user.avatar_url,
+      appointmentDate,
     }
 
-    yield put(AppointmentsActions.addAppointmentsSuccess(appointmentsData))
+    yield put(AppointmentsActions.addAppointmentsSuccess(appointments))
     // toast('Repositório adicionado com sucesso!')
   } catch (error) {
-    const erroMsg = 'Erro ao adicionar repositório'
+    const erroMsg = 'Erro ao adicionar appointment'
     // toast(erroMsg)
     yield put(AppointmentsActions.addAppointmentsFailure(erroMsg))
   }

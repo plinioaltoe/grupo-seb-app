@@ -8,11 +8,8 @@ const INITIAL_STATE = {
 
 describe('Appointments Reducer', () => {
   test('should be able to call add request', () => {
-    const appointmentDateTime = '01/01/2019'
-    const state = appointmentsReducer(
-      INITIAL_STATE,
-      AppointmentsActions.addAppointmentsRequest({ appointmentDateTime }),
-    )
+    const appointmentDate = '01/01/2019'
+    const state = appointmentsReducer(INITIAL_STATE, AppointmentsActions.addAppointmentsRequest({ appointmentDate }))
     expect(state.data).toEqual([])
     expect(state.loading).toBeTruthy()
     expect(state.error).toBeNull()
@@ -27,13 +24,10 @@ describe('Appointments Reducer', () => {
   })
 
   test('should be able to add appointments', () => {
-    const appointmentDateTime = '01/01/2019'
-    const state = appointmentsReducer(
-      INITIAL_STATE,
-      AppointmentsActions.addAppointmentsSuccess({ appointmentDateTime }),
-    )
+    const appointmentDate = '01/01/2019'
+    const state = appointmentsReducer(INITIAL_STATE, AppointmentsActions.addAppointmentsSuccess({ appointmentDate }))
 
-    expect(state.data).toContainEqual({ appointmentDateTime })
+    expect(state.data).toContainEqual({ appointmentDate })
     expect(state.loading).toBeFalsy()
     expect(state.error).toBeNull()
   })
@@ -42,11 +36,11 @@ describe('Appointments Reducer', () => {
     const data = [
       {
         id: 1,
-        appointmentDateTime: '01/01/2019',
+        appointmentDate: '01/01/2019',
       },
       {
         id: 2,
-        appointmentDateTime: '01/01/2020',
+        appointmentDate: '01/01/2020',
       },
     ]
     const INITIAL_STATE = {
