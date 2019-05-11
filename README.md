@@ -39,7 +39,7 @@ O usuário logado pode ver apenas as suas consultas.
 O médico pode ver todas as consultas.
 Tanto o usuário, como o médico podem excluir consultas.
 O header exibe um contador com a quantidade de consultas marcadas.
-O médico náo pode criar consultas, assim sendo, o campo para preencher data não é exibido.
+O médico não pode criar consultas, assim sendo, o campo para preencher data não é exibido.
 Não pode ser realizada uma consulta no mesmo dia e hora, mesmo entre usuários diferentes.
 
 ### Conceitos e libs aplicados (Dependências do arquivo package.json):
